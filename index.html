@@ -5,10 +5,28 @@
 		<title>Aramco Inversiones</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!-- Inline critical preloader styles to prevent flash -->
+		<style>
+		  #preloader{position:fixed;top:0;left:0;right:0;bottom:0;background:#ffffff;display:flex;align-items:center;justify-content:center;z-index:100000;transition:opacity .45s ease,visibility .45s ease}
+		  #preloader.preloader-hidden{opacity:0;visibility:hidden;pointer-events:none}
+		  #preloader .preloader-inner{text-align:center}
+		  .preloader-logo{width:140px;margin-bottom:18px;display:inline-block}
+		  .loader{width:48px;height:48px;border-radius:50%;border:5px solid rgba(0,0,0,0.08);border-top-color:#FF8C00;animation:spin .8s linear infinite;margin:0 auto}
+		  @keyframes spin{to{transform:rotate(360deg)}}
+		  body.loading{overflow:hidden}
+		</style>
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/loader.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
-	<body class="is-preload">
+	<body class="is-preload loading">
+		<!-- Preloader overlay (placed first so it renders immediately) -->
+		<div id="preloader">
+			<div class="preloader-inner">
+				<img src="images/logo.webp" alt="logo" class="preloader-logo" />
+				<div class="loader"></div>
+			</div>
+		</div>
 		
 		<!-- Header -->
 		<header id="nav">
@@ -284,7 +302,19 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-			<script>document.getElementById('menu-toggle').addEventListener('click', function() {
+			<script>
+			// Hide preloader when page fully loads
+			window.addEventListener('load', function() {
+				var pr = document.getElementById('preloader');
+				if (pr) {
+					pr.classList.add('preloader-hidden');
+					setTimeout(function(){ pr.parentNode && pr.parentNode.removeChild(pr); }, 600);
+				}
+				document.body.classList.remove('loading','is-preload');
+			});
+
+			// Menu toggle (existing)
+			document.getElementById('menu-toggle').addEventListener('click', function() {
 				document.getElementById('menu').classList.toggle('show');
 			});
 			</script>
