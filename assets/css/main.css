@@ -4086,7 +4086,7 @@ input, select, textarea {
 			}
 
 			.logo {
-				max-width: 380px;
+				max-width: 350px;
 			}
 		/* Main */
 
@@ -4097,7 +4097,7 @@ input, select, textarea {
 		/* Header */
 
 			#header {
-				padding: 200px 2em 4em 2em ;
+				padding: 90px 2em 4em 2em ;
 			}
 
 				#header br {
