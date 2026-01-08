@@ -4050,6 +4050,12 @@ input, select, textarea {
 
 	@media screen and (max-width: 480px) {
 
+		#header {
+    
+	height: 70vh;
+    
+}
+
 		#menu {
 			display: none; /* Oculta el menú en pantallas pequeñas */
 			flex-direction: column;
