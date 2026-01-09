@@ -238,44 +238,45 @@
 
 		// Poptrox.
 			$main.poptrox({
-				baseZIndex: 20000,
-				caption: function($a) {
+    baseZIndex: 20000,
 
-					var s = '';
+    caption: function ($a) {
+        var s = '';
+        $a.nextAll().each(function () {
+            s += this.outerHTML;
+        });
+        return s;
+    },
 
-					$a.nextAll().each(function() {
-						s += this.outerHTML;
-					});
+    fadeSpeed: 300,
 
-					return s;
+    onPopupClose: function () {
+        $body.removeClass('modal-active');
+    },
 
-				},
-				fadeSpeed: 300,
-				onPopupClose: function() { $body.removeClass('modal-active'); },
-				onPopupOpen: function() { $body.addClass('modal-active'); },
-				overlayOpacity: 0,
-				popupCloserText: '',
-				popupHeight: 150,
-				popupLoaderText: '',
-				popupSpeed: 300,
-				popupWidth: 150,
-				selector: '.thumb > a.image',
-				usePopupCaption: true,
-				usePopupCloser: true,
-				usePopupDefaultStyling: false,
-				usePopupForceClose: true,
-				usePopupLoader: true,
-				usePopupNav: true,
-				windowMargin: 50
-			});
+    onPopupOpen: function () {
+        $body.addClass('modal-active');
+    },
 
-			// Hack: Set margins to 0 when 'xsmall' activates.
-				breakpoints.on('<=xsmall', function() {
-					$main[0]._poptrox.windowMargin = 0;
-				});
+    overlayOpacity: 0.75,        // 🔴 visible
+    popupCloserText: '',
+    popupLoaderText: '',
+    popupSpeed: 300,
 
-				breakpoints.on('>xsmall', function() {
-					$main[0]._poptrox.windowMargin = 50;
-				});
+    // 🔴 ELIMINAR tamaños fijos
+    // popupWidth: 150,
+    // popupHeight: 150,
+
+    selector: '.thumb > a.image',
+    usePopupCaption: false,
+    usePopupCloser: true,
+    usePopupDefaultStyling: false,
+    usePopupForceClose: true,
+    usePopupLoader: true,
+    usePopupNav: true,
+
+    windowMargin: 20             // 🔴 móvil-friendly
+});
+
 
 })(jQuery);

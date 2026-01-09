@@ -2415,3 +2415,11 @@ button,
 				margin-left: 0;
 				padding: 0;
 			}
+.poptrox-overlay {
+  background: rgba(0,0,0,0.75) !important;
+}
+
+.thumb a {
+  pointer-events: auto;
+  touch-action: manipulation;
+}
